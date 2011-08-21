@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>HTML5 File API</title>
+		<link rel="stylesheet" href="css/site.css" />
+	</head>
+	<body>
+		<!-- http://net.tutsplus.com/tutorials/javascript-ajax/uploading-files-with-ajax/ -->
+		<div id="main">
+			<h1>Upload Your Images</h1>
+			<form method="post" enctype="multipart/form-data"  action="upload.php">
+				<input type="file" name="images" id="images" multiple />
+				<button type="submit" name="upload" id="btn">
+					Upload Files!
+				</button>
+			</form>
+			<div id="response"></div>
+			<ul id="image-list"></ul>
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		<script src="js/upload.js"></script>
+	</body>
+</html>
