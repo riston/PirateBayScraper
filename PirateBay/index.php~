@@ -1,0 +1,21 @@
+<?php
+require_once './simple_html_dom.php';
+$url = 'https://thepiratebay.org/top/201';
+
+$html = file_get_html($url);
+/*
+foreach ($html->find('.product_descr') as $product) {
+
+}
+*/
+foreach ($html->find('tr') as $key) {
+	var_dump($key);
+}
+function writeToFile($filename, $content) {
+	if (is_writeable($filename)) {
+		$fp = fopen($filename, 'w');
+		fwrite($fp, $content);
+		fclose($fp);
+	}
+}
+?>
