@@ -1,0 +1,17 @@
+body {
+	font: 11px/14px sans-serif;
+}
+
+h2 {
+	font-size: 2em;
+	margin-bottom: 1em;
+}
+
+div.movie {
+	padding: 1em;
+	margin: 1em;
+	background-color: rgba(150, 150, 150, 0.3);
+	-webkit-border-radius: 9px;
+	-moz-border-radius: 9px;
+	border-radius: 9px;
+}
