@@ -26,7 +26,7 @@ class Imdb
     function getMovieInfoById($imdbId)
     {
         $arr = array();
-        $imdbUrl = "http://www.imdb.com/title/" . trim($imdbId) . "/";
+        $imdbUrl = "http://akas.imdb.com/title/" . trim($imdbId) . "/";
         $html = $this->geturl($imdbUrl);
         if(stripos($html, "<meta name=\"application-name\" content=\"IMDb\" />") !== false){
             $arr = $this->scrapMovieInfo($html);
@@ -151,7 +151,7 @@ class Imdb
  
     // Collect all Media Images
     function getMediaImages($titleId){
-        $url  = "http://www.imdb.com/title/" . $titleId . "/mediaindex";
+        $url  = "http://akas.imdb.com/title/" . $titleId . "/mediaindex";
         $html = $this->geturl($url);
         $media = array();
         $media = array_merge($media, $this->scanMediaImages($html));

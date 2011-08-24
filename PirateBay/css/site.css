@@ -2,9 +2,21 @@ body {
 	font: 11px/14px sans-serif;
 }
 
-h2 {
+.movie-title {
+	display: block;
+	font-weight: bolder;
 	font-size: 2em;
 	margin-bottom: 1em;
+}
+
+.movie-title:link, .movie-title:visited {
+	text-decoration: none;
+	color: #000;
+}
+
+.movie-title:hover {
+	text-decoration: underline;
+	color: #000;
 }
 
 div.movie {
@@ -14,4 +26,38 @@ div.movie {
 	-webkit-border-radius: 9px;
 	-moz-border-radius: 9px;
 	border-radius: 9px;
+}
+
+div.movie img {
+	float: left;
+	padding: 0 1em 1em 0; 
+}
+
+hr {
+	clear: both;
+}
+
+/** Genres styling **/
+ul.genres {
+	list-style: none;
+	margin: 12px;
+}
+.genres li {
+	display: inline;
+	list-style-type: none;
+}
+.genres a { 
+	padding: 3px 10px; 
+}
+
+.genres a:link, .genres a:visited {
+	color: #fff;
+	background-color: #036;
+	text-decoration: none;
+}
+
+.genres a:hover {
+	color: #fff;
+	background-color: #369;
+	text-decoration: none;
 }

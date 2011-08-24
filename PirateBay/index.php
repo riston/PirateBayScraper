@@ -37,6 +37,17 @@ function cacheIMDBMovie($imdb, $movieName) {
 	}
 	return $movieArray;
 }
+
+function imgDisplay($movieArray) {
+	$src = '';
+	if (strlen($movieArray['poster_small'] >= 1) ||
+			key_exists('poster_small', $movieArray)) {
+		$src = './library/imdbImage.php?url='. $movieArray['poster_small'];
+	} else {
+		$src = './img/404-logo.jpg';
+	}
+	return sprintf('<img src="%s" width="101" height="150" />', $src);
+}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -61,14 +72,31 @@ function cacheIMDBMovie($imdb, $movieName) {
 	$cleaner->filterRunner($element->title);
 	?>
 	<div class="movie">
+		<!-- IMDB data view here -->
 		<?php $movieArray = cacheIMDBMovie($imdb, $cleaner->getMovieName()); ?>
 		<?php if (!isset($movieArray['error'])): ?>
-			<h3><?php echo $movieArray['title']; ?></h3>	
-			<img src="./library/imdbImage.php?url=<?php echo $movieArray['poster_small']; ?>" width="101" height="150" />
+			<a href="<?php echo $movieArray['imdb_url']; ?>" class="movie-title"><?php echo $movieArray['title']; ?></a>	
+			<p>
+				<?php echo imgDisplay($movieArray); ?>
+				<?php echo $movieArray['storyline']; ?>
+			</p>
+			<p>
+				Year: <span><?php echo $movieArray['year']; ?></span>
+			</p>
+			<p>
+				Rating: <span><?php echo $movieArray['rating']; ?></span>, Votes: <span><?php echo $movieArray['votes']; ?></span>
+			</p>
+			<ul class="genres">
+				<?php foreach ($movieArray['genres'] as $genre): ?>
+					<li><a href="http://www.imdb.com/genre/<?php echo $genre; ?>">
+						<?php echo $genre; ?></a></li>
+				<?php endforeach; ?>
+			</ul>
+			<hr />
 		<?php endif; ?>
 		
 		<!-- Piratebay information -->
-		<h2><?php echo $cleaner->getMovieName(); ?></h2>
+		<h3><?php echo $cleaner->getMovieName(); ?></h3>
 		<p>The keywords with movie from Pirate Bay</p>
 		<?php foreach ($cleaner->getKeywords() as $keyword): ?>
 		<ul>
