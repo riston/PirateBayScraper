@@ -5,6 +5,7 @@ body {
 .movie-title {
 	display: block;
 	font-weight: bolder;
+	color: #003366;
 	font-size: 2em;
 	margin-bottom: 1em;
 }
@@ -20,7 +21,7 @@ body {
 }
 
 div.movie {
-	padding: 1em;
+	padding: 1.5em;
 	margin: 1em;
 	background-color: rgba(150, 150, 150, 0.3);
 	-webkit-border-radius: 9px;
@@ -60,4 +61,50 @@ ul.genres {
 	color: #fff;
 	background-color: #369;
 	text-decoration: none;
+}
+
+/** Site layout **/
+#container {
+	width: 960px;
+	margin: 0 auto;
+}
+
+/** Torrent data button **/
+.torrent-button {
+	background-color: #336699;
+	color: #CCCCCC;
+	width: 200px;
+	margin: 0 auto;
+	padding: 0.7em;
+	text-align: center;
+	border: 1.5px solid #003366;
+	-webkit-border-radius: 9px;
+	-moz-border-radius: 9px;
+	border-radius: 9px;
+}
+
+.torrent-button a:link, .torrent-button a:visited {
+	color: #fff;
+	text-decoration: none;
+}
+
+.torrent-button a:hover {
+	color: #fff;
+	text-decoration: none;
+}
+
+.torrent {
+	display: none;
+}
+
+/** Media images **/
+
+.media {
+	float: right;
+	padding: 0 0 1em 1em;
+}
+
+.media img {
+	height: 200px;
+	width: 200px;
 }
