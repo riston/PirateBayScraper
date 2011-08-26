@@ -17,6 +17,11 @@
 </head>
 <body>
 <div id="container">
+	<div id="sidebar">
+		<?php for ($i = 0; $i < 100; $i++): ?>
+			<?php echo $i; ?><br />
+		<?php endfor; ?>
+	</div>
 <?php  foreach ($movieArray as $movie): ?>
 	<div class="movie">
 		<!-- IMDB data view here -->

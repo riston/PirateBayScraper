@@ -108,3 +108,9 @@ ul.genres {
 	height: 200px;
 	width: 200px;
 }
+
+#sidebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+}
