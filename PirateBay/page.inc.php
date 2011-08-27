@@ -5,23 +5,29 @@
 	<title>PirateBay Movie top 100</title>
 	<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" charset="utf-8"/>
 	<link rel="stylesheet" href="css/site.css" type="text/css" media="screen" charset="utf-8"/>
+	<link rel="stylesheet" href="css/sprite.css" type="text/css" media="screen" charset="utf-8"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 	<script src="js/jcarousellite_1.0.1.min.js"></script>
 	<script type="text/javascript" charset="utf-8">
 		$(document).ready(function() {
-			$('.torrent-button').click(function() {
-				$(this).prev('.torrent').fadeToggle("slow", "swing");
+			var torrentBtn = $('.torrent-button');
+			$(torrentBtn).click(function() {
+				$(this).prev('.torrent').fadeToggle("slow", "swing", function() {
+				});
+				
 			});
 		});
 	</script>
 </head>
 <body>
 <div id="container">
+	<!--
 	<div id="sidebar">
-		<?php for ($i = 0; $i < 100; $i++): ?>
+		<?php for ($i = 0; $i < 25; $i++): ?>
 			<?php echo $i; ?><br />
 		<?php endfor; ?>
 	</div>
+	-->
 <?php  foreach ($movieArray as $movie): ?>
 	<div class="movie">
 		<!-- IMDB data view here -->
@@ -50,17 +56,33 @@
 		
 		<!-- Piratebay information -->
 		<div class="torrent">
-			<h3><?php echo $movie['torrent_title']; ?></h3>
-			<a href="<?php echo $movie['torrent_link'] ?>">Torrent</a>
-			<a href="<?php echo $movie['torrent_magnet'] ?>">Magnet</a>
-			<p>The keywords with movie from Pirate Bay</p>
-			<?php foreach ($movie['torrent_keywords'] as $keyword): ?>
-			<ul class="genres">
-				<li><a href="#"><?php echo $keyword; ?></a></li>
-			</ul>
-			<?php endforeach; ?>
+			<table>
+				<thead>
+					<tr>
+						<th>Torrent Name</th>
+						<th>Action</th>
+						<th>Keywords</th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php foreach ($movie['torrent'] as $torrent): ?>
+					<tr>
+						<td><?php echo $torrent['title']; ?></th>
+						<td>
+							<a href="<?php echo $torrent['link'] ?>" class="ss_sprite ss_arrow_down" title="Torrent download"></a>
+							<a href="<?php echo $torrent['magnet'] ?>" class="ss_sprite ss_transmit" title="Download with magnet"></a>
+						</td>
+						<td>
+						<?php foreach ($torrent['keywords'] as $keyword): ?>
+							<a href="#"><?php echo $keyword; ?></a>
+						<?php endforeach; ?>
+						</td>
+					</tr>
+				<?php endforeach; ?>
+				</tbody>
+			</table>
 		</div>
-		<div class="torrent-button"><a href="#<?php echo $movie['torrent_title']; ?>">Show torrent data</a></div>
+		<div class="torrent-button"><a href="#<?php echo $movie['title']; ?>">Show torrent data</a></div>
 	</div>
 	
 <?php endforeach; ?>

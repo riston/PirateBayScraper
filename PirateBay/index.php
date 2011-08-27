@@ -8,8 +8,6 @@ $url = 'https://thepiratebay.org/top/201';
 $cachePirateBayPage = CACHE_DIR .'/pirate.cache';
 $cacheLife = 360; // In seconds
 
-
-
 function writeToFile($filename, $content) {
 	$fp = fopen($filename, 'w');
 	fwrite($fp, $content);
@@ -18,9 +16,10 @@ function writeToFile($filename, $content) {
 
 function cachePageFromUrl($url, $cacheFile, $cacheLife) {
 	$modifiedTime = @filemtime($cacheFile);
-	if (!$modifiedTime && ((time() - $modifiedTime) <= $cacheLife)) {
+	if (!$modifiedTime || ((time() - $modifiedTime) >= $cacheLife)) {
 		// Make cache file first then start handling
 		printf("Downloading the file\n");
+		print "Get the file";
 		writeToFile($cacheFile, file_get_contents($url));
 	}
 }
@@ -85,12 +84,38 @@ foreach ($pirateMovieArray as $movie) {
 	
 	$movieRow = array();
 	$movieRow = cacheIMDBMovie($imdb, $cleaner->getMovieName());
-	$movieRow['torrent_title'] = $movie['title'];
-	$movieRow['torrent_link'] = $movie['link'];
-	$movieRow['torrent_magnet'] = $movie['magnet'];
-	$movieRow['torrent_keywords'] = $cleaner->getKeywords();
+	
+	$torrentInfo = array(
+		'title' 	=> $movie['title'], 
+		'link' 		=> $movie['link'], 
+		'magnet' 	=> $movie['magnet'],
+		'keywords' 	=> $cleaner->getKeywords(),		
+	);
+	$movieRow['torrent'] = array();
+	$movieRow['torrent'][] = $torrentInfo;
 	$movieArray[] = $movieRow;
 }
-array_unique($movieArray);
+
+// Find the duplicates and join into one movie array the torrent info.
+for ($i = 0; $i < count($movieArray); $i++) {
+	for ($j = 0; $j < count($movieArray); $j++) {
+		if ($i != $j && isset($movieArray[$i]) && isset($movieArray[$j]) && (array_key_exists('title', $movieArray[$i]) 
+				&& array_key_exists('title', $movieArray[$j]))) {
+			if ($movieArray[$i]['title'] == $movieArray[$j]['title']) {
+				//echo "Duplicate {$i} {$movieArray[$i]['title']} {$j} {$movieArray[$j]['title']} <br />";
+				$torrentData = array(
+					'title' 	=> $movieArray[$j]['torrent'][0]['title'], 
+					'link' 		=> $movieArray[$j]['torrent'][0]['link'], 
+					'magnet' 	=> $movieArray[$j]['torrent'][0]['magnet'],
+					'keywords' 	=> $movieArray[$j]['torrent'][0]['keywords']
+				);
+				$movieArray[$i]['torrent'][] = $torrentData;
+				unset($movieArray[$j]);
+			}
+		}
+
+	}
+}
+//var_dump($movieArray[0]['torrent'][0]['keywords']);
 require_once 'page.inc.php';
 ?>

@@ -110,7 +110,48 @@ ul.genres {
 }
 
 #sidebar {
+	width: 150px;
+	background-color: rgba(150, 150, 150, 0.3);
 	position: fixed;
-	top: 0;
+	top: 35px;
 	left: 0;
+	padding: 1.5em;
+	/** Top right border **/
+	border-top-right-radius: 1em; 	
+	-moz-border-radius-topright: 1em;	
+	-webkit-border-top-right-radius: 1em;
+	/** Bottom right border **/
+	border-bottom-right-radius: 1em;
+	-moz-border-radius-bottomright: 1em;
+	-webkit-border-bottom-right-radius: 1em;
+}
+
+/** Torrent data table **/
+.torrent
+{
+	margin: 0 auto;
+	padding: 0.7em 0 1.5em 0;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	width: 480px;
+	border-collapse: collapse;
+	text-align: left;
+}
+
+.torrent th
+{
+	font-size: 14px;
+	font-weight: normal;
+	color: #039;
+	padding: 10px 8px;
+	border-bottom: 2px solid #6678b1;
+}
+.torrent td
+{
+	color: #669;
+	padding: 9px 8px 0px 8px;
+}
+.torrent tbody tr:hover td
+{
+	color: #009;
 }

@@ -63,7 +63,7 @@ class PirateBay_Cleaner	{
 	{
 		$keywords = array(
 			'DVDRip', 'PPVRip', 'Cam', 'XviD', 'TS', 'R5', 'AC3', 'BRrip'. 'Line',
-			'x264', 'dvdscr', 'READNFO', 'BDRip', 'BRRip', 'HDRipHQ', 'HDTV', 'READ NFO',
+			'x264', 'DVDSCR', 'READNFO', 'BDRip', 'BRRip', 'HDRipHQ', 'HDTV', 'READ NFO',
 			'LiNE', 'LIMITED', '480p', '720p', '1080p', 'TELESYNC', 'HDRipHQ', 'UNRATED');
 			
 		foreach ($keywords as $keyword) {
