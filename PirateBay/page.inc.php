@@ -67,7 +67,7 @@
 				<tbody>
 				<?php foreach ($movie['torrent'] as $torrent): ?>
 					<tr>
-						<td><?php echo $torrent['title']; ?></th>
+						<td><?php echo $torrent['title']; ?></td>
 						<td>
 							<a href="<?php echo $torrent['link'] ?>" class="ss_sprite ss_arrow_down" title="Torrent download"></a>
 							<a href="<?php echo $torrent['magnet'] ?>" class="ss_sprite ss_transmit" title="Download with magnet"></a>
